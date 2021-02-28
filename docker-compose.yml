@@ -1,8 +1,16 @@
-version: '3.4'
-
 services:
-  dotnetlinux.app:
-    image: ${DOCKER_REGISTRY-}dotnetlinuxapp
+  app:
     build:
-      context: .
-      dockerfile: DotNetLinux.App/Dockerfile
+      context:  ./App
+      dockerfile: Dockerfile
+    expose:
+      - "5000"
+ 
+  proxy:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    links:
+      - app
