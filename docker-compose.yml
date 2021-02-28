@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dotnetlinux.app:
+    image: ${DOCKER_REGISTRY-}dotnetlinuxapp
+    build:
+      context: .
+      dockerfile: DotNetLinux.App/Dockerfile
